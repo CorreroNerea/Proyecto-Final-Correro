@@ -15,14 +15,14 @@
 
  <!-- Form-->
  {% block Form %}
-<p>Buscando: {{codigo}} </p>     
+<p>Buscando: {{codigo_prod}} </p>     
         
 <!--{% if producto %}-->
 
 <ul>
-     {% for producto in productos %}
-          <li> {{producto.producto}} </li>
-           <li> {{producto.codigo}} </li>
+     {% for productos in producto %}
+          <li> {{productos.producto}} </li>
+           <li> {{productos.codigo}} </li>
       {% endfor %}
 </ul>
 

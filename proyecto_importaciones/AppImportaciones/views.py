@@ -20,7 +20,7 @@ def clienteFormulario(request):
             informacion = miFormulario.cleaned_data  
             cliente = Cliente(nombre=informacion["nombre"], password=informacion["password"], num_cliente=informacion["num_cliente"], email=informacion["email"]) 
             cliente.save()  
-            return render(request, "AppImportaciones/index.html")  
+            return render(request, "appImportacion/index.html")  
     else:
         miFormulario = ClienteFormulario()  
         
@@ -40,7 +40,7 @@ def supervFormulario(request):
             informacion = miFormulario.cleaned_data  
             supervisor = Supervisor(nombre_emp=informacion["nombre_emp"], numero=informacion["numero"]) 
             supervisor.save()  
-            return render(request, "AppImportaciones/index.html")  
+            return render(request, "appImportacion/index.html")  
     else:
         miFormulario = SupervisorFormulario()  
         
@@ -58,9 +58,9 @@ def pedidoFormulario(request):
 
         if miFormulario.is_valid(): 
             informacion = miFormulario.cleaned_data  
-            pedido = Pedido(codigo_ped=informacion["codigo"], aprobado=informacion["aprobado"], fecha_de_entrega=informacion["Fecha"]) 
+            pedido = Pedido(codigo_ped=informacion["codigo_ped"], aprobado=informacion["aprobado"], fecha_de_entrega=informacion["fecha_de_entrega"]) 
             pedido.save()  
-            return render(request, "AppImportaciones/index.html")  
+            return render(request, "appImportacion/index.html")  
     else:
         miFormulario = PedidoFormulario()  
         
@@ -81,9 +81,9 @@ def productoFormulario(request):
 
         if miFormulario.is_valid(): 
             informacion = miFormulario.cleaned_data  
-            productos = Producto(codigo_prod=informacion["codigo"], producto=informacion["producto"]) 
+            productos = Producto(codigo_prod=informacion["codigo_prod"], producto=informacion["producto"]) 
             productos.save()  
-            return render(request, "AppImportaciones/index.html")  
+            return render(request, "appImportacion/index.html")  
     else:
         miFormulario = ProductoFormulario()  
         
@@ -96,11 +96,11 @@ def busqueda(request):
    
 
 def buscar(request):
-    if request.GET["codigo"]:
-        codigo = request.GET["codigo"]
-        producto = Producto.objects.filter(codigo__icontains=codigo)
+    if request.GET["codigo_prod"]:
+        codigo_prod = request.GET["codigo_prod"]
+        producto = Producto.objects.filter(codigo_prod__icontains=codigo_prod)
         
-        return render(request, "appImportaciones/resultado_prod.html", {"producto": producto, "codigo": codigo})
+        return render(request, "appImportacion/resultado_prod.html", {"producto": producto, "codigo_prod": codigo_prod})
     
     else:
         respuesta = "El producto no se encuentra o los datos son incorrectos"

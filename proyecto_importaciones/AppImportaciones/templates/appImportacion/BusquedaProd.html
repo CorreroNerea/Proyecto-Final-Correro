@@ -15,15 +15,12 @@
 
         <!-- Form-->
         {% block Form %}
-        <form action="proyecto_importaciones\AppImportaciones\templates\appImportacion\resultado_prod.html" method="GET">
-            <input type="number" name="codigo" id="codigo">
+        
+        <form action= "{% url 'buscar' %}" method="GET"> <!--corregido-->
+            <input type="number" name="codigo_prod" id="codigo"> 
             <input type="submit" value="Buscar" >
-
-
-            {% comment %}  {% csrf_token %}  
-            {{ miFormulario.as_table }}
-            <button type="submit">Enviar</button> {% endcomment %} 
         </form>           
+        
         {% endblock Form %}
 
 <!-- Section-->
