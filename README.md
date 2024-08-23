@@ -36,7 +36,7 @@ git clone https://github.com/CorreroNerea/Tercera_Pre_entrega-Correro
 ```
 
 Instalar Dependencias:
-Navega al directorio del proyecto y asegúrate de instalar las dependencias necesarias (asegúrate de tener el entorno virtual activo si es necesario):
+Navega al directorio del proyecto y asegúrate de instalar las dependencias necesarias:
 
 ```bash
 
