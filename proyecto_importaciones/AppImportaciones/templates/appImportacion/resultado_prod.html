@@ -17,7 +17,7 @@
  {% block Form %}
 <p>Buscando: {{codigo_prod}} </p>     
         
-<!--{% if producto %}-->
+{% if producto %}
 
 <ul>
      {% for productos in producto %}
@@ -26,7 +26,11 @@
       {% endfor %}
 </ul>
 
-<!--{% endif %}-->
+{% else %}
+
+    <p>No existe producto bajo codigo: {{codigo_prod}} </p>  
+ 
+{% endif %}
 
  {% endblock Form %}
 
