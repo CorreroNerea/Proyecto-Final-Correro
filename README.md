@@ -57,7 +57,7 @@ Finalmente, inicia el servidor de desarrollo:
 Copiar código
 python manage.py runserver
 ```
-Puedes acceder a la aplicación en http://127.0.0.1:8000/.
+Puedes acceder a la aplicación en http://127.0.0.1:8000/AppImportaciones.
 
 Uso
 Navegación:
