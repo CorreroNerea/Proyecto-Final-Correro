@@ -1,7 +1,9 @@
 from django.shortcuts import render
-from AppImportaciones.forms import ClienteFormulario, SupervisorFormulario, PedidoFormulario, ProductoFormulario
+from AppImportaciones.forms import ClienteFormulario, SupervisorFormulario, PedidoFormulario#, ProductoFormulario
 from AppImportaciones.models import Cliente, Supervisor, Pedido, Producto
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.http import HttpResponse
+from django.urls import reverse_lazy
 
 
 def index(request):
@@ -74,21 +76,48 @@ def producto(request):
 #producto = Producto(codigo_prod = 2253, producto = "Sticker_totoro") #Clase 18 --> revisar
 #producto.save()
 
-def productoFormulario(request):
-    if request.method == "POST": 
-        miFormulario = ProductoFormulario(request.POST)  
-        print(miFormulario)  
+# def productoFormulario(request):
+#     if request.method == "POST": 
+#         form = ProductoFormulario(request.POST)  
+#         print(form)  
 
-        if miFormulario.is_valid(): 
-            informacion = miFormulario.cleaned_data  
-            productos = Producto(codigo_prod=informacion["codigo_prod"], producto=informacion["producto"]) 
-            productos.save()  
-            return render(request, "appImportacion/index.html")  
-    else:
-        miFormulario = ProductoFormulario()  
+#         if form.is_valid(): 
+#             informacion = form.cleaned_data  
+#             productos = Producto(codigo_prod=informacion["codigo_prod"], producto=informacion["producto"]) 
+#             productos.save()  
+#             return render(request, "appImportacion/index.html")  
+#     else:
+#         miFormulario = ProductoFormulario()  
         
-    return render(request, "appImportacion/prodFormulario.html", {"miFormulario": miFormulario})
+#     return render(request, "appImportacion/prodFormulario.html", {"miFormulario": miFormulario})
 
+class ProductoListView(ListView):
+     model = Producto
+     template_name = 'appImportacion/producto.html'
+     context_object_name = 'articulos'
+
+class ProductoDetailView(DetailView):
+    model = Producto
+    template_name = 'appImportacion/articulo_detail.html'
+    #context_object_name = 'articulo'
+
+class ProductoCreateView(CreateView):
+    model = Producto
+    template_name = 'appImportacion/prodFormulario.html'
+    fields = ['codigo_prod', 'producto']
+    success_url = reverse_lazy('articulo-list')
+
+class ProductoUpdateView(UpdateView):  
+    model = Producto
+    template_name = 'appImportacion/prodFormulario.html'
+    fields = ['codigo_prod', 'producto']
+
+class ProductoDeleteView(DeleteView):
+    model = Producto
+    template_name = 'appImportacion/articulo_confirm_delete.html'
+    success_url = reverse_lazy('articulo-list')
+    
+    
 
 #Busqueda ---------
 def busqueda(request):

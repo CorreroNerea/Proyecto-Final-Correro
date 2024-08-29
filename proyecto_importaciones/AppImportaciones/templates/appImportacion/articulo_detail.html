@@ -6,7 +6,7 @@
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Product</h1>
+            <h1 class="display-4 fw-bolder"> <title>{{ object.producto }}</title></h1>
             <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
         </div>
     </div>
@@ -14,14 +14,16 @@
 {% endblock Header %}
 
         <!-- Form-->
-        {% block Form %}
-        <form method="POST">
-            {% csrf_token %}  
-            {{ form.as_table }}
-            <button type="submit">Guardar</button>
-        </form>  
-        <a href="{% url 'articulo-list' %}">Volver a lista de productos</a>         
-        {% endblock Form %}
+{% block Form %}
+
+<h1>{{ art.producto }}</h1>
+<p>{{ art.codigo_prod }}</p>
+<a href="{% url 'articulo-update' art.codigo_prod %}">Editar</a>
+<a href="{% url 'articulo-delete' art.codigo_prod %}">Eliminar</a>
+<a href="{% url 'articulo-list' %}">Volver a la lista</a>
+    
+
+{% endblock Form %}
 
 <!-- Section-->
 {% block Section %}  

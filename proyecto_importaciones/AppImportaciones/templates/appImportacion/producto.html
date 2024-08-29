@@ -17,13 +17,23 @@
 
 {% block Form %}
         
-       <form action="{% url 'formprod' %}" method="get">
+       {% comment %} <form action="{% url 'formprod' %}" method="get">
         <button type="submit">Agregar</button>
-       </form>
+       </form> {% endcomment %}
 
+       <!-- Form para Buscar artículo -->
        <form action="{% url 'buscar_prod' %}" method="get">
         <button type="submit">Buscar producto</button>
        </form>
+
+       <!-- Enlace para crear un nuevo artículo -->
+        <a href="{% url 'articulo-create' %}">Ingresar Nuevo Artículo</a> 
+       <h1>Lista de productos</h1>
+       <ul>
+           {% for articulos in articulos %}
+               <li><a href="{% url 'prod' articulos.codigo_prod %}">{{ articulos.producto }}</a></li>
+           {% endfor %}
+       </ul>
 
 {% endblock Form %}
 
