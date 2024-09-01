@@ -13,13 +13,14 @@
 </header>
 {% endblock Header %}
 
-        <!-- Form-->
+        <!-- Form para crear nuevo producto-->
         {% block Form %}
         <form method="POST">
             {% csrf_token %}  
             {{ form.as_table }}
             <button type="submit">Guardar</button>
         </form>  
+        
         <a href="{% url 'articulo-list' %}">Volver a lista de productos</a>         
         {% endblock Form %}
 

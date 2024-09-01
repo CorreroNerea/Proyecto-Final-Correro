@@ -12,10 +12,12 @@
     </div>
 </header>
 {% endblock Header %}
-
-        <!-- Form-->
+       
         {% block Form %}
         
+        <a href="{% url 'articulo-list' %}">Volver a lista de productos</a>  
+        
+         <!-- Form-->
         <form action= "{% url 'buscar' %}" method="GET"> <!--corregido-->
             <input type="number" name="codigo_prod" id="codigo"> 
             <input type="submit" value="Buscar" >

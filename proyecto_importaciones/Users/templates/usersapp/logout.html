@@ -6,7 +6,7 @@
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder"> <title>{{ object.producto }}</title></h1>
+            <h1 class="display-4 fw-bolder">Loged out</h1>
             <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
         </div>
     </div>
@@ -14,16 +14,16 @@
 {% endblock Header %}
 
         <!-- Form-->
-{% block Form %}
+        {% block Form %}
 
-<h1>{{ art.producto }}</h1>
-<p>{{ art.codigo_prod }}</p>
-<a href="{% url 'articulo-update' art.codigo_prod %}">Editar</a>
-<a href="{% url 'articulo-delete' art.codigo_prod %}">Eliminar</a>
-<a href="{% url 'articulo-list' %}">Volver a la lista</a>
-    
+        {% comment %} <form method="Post" action="{% url 'Logout' %}">
+            {% csrf_token %}
+            <button type="submit">Cerrar sesión</button>
+        </form> {% endcomment %}
 
-{% endblock Form %}
+        <p>Te has deslogeado</P>
+
+        {% endblock Form %}
 
 <!-- Section-->
 {% block Section %}  

@@ -1,9 +1,11 @@
 from django.shortcuts import render
-from AppImportaciones.forms import ClienteFormulario, SupervisorFormulario, PedidoFormulario#, ProductoFormulario
+from AppImportaciones.forms import ClienteFormulario, SupervisorFormulario, PedidoFormulario
 from AppImportaciones.models import Cliente, Supervisor, Pedido, Producto
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import  DetailView, CreateView, UpdateView, DeleteView , ListView
 from django.http import HttpResponse
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -30,9 +32,11 @@ def clienteFormulario(request):
 
 
 #Supervisor -----------
+@login_required
 def supervisor(request):
     return render(request, 'appImportacion/supervisor.html')
 
+@login_required
 def supervFormulario(request):
     if request.method == "POST": 
         miFormulario = SupervisorFormulario(request.POST)  
@@ -42,7 +46,7 @@ def supervFormulario(request):
             informacion = miFormulario.cleaned_data  
             supervisor = Supervisor(nombre_emp=informacion["nombre_emp"], numero=informacion["numero"]) 
             supervisor.save()  
-            return render(request, "appImportacion/index.html")  
+            return render(request, "appImportacion/inicio.html")  
     else:
         miFormulario = SupervisorFormulario()  
         
@@ -50,9 +54,11 @@ def supervFormulario(request):
 
 
 #Pedido ---------------
+@login_required
 def pedido(request):
     return render(request, 'appImportacion/pedido.html')
 
+@login_required
 def pedidoFormulario(request):
     if request.method == "POST": 
         miFormulario = PedidoFormulario(request.POST)  
@@ -69,52 +75,31 @@ def pedidoFormulario(request):
     return render(request, "appImportacion/pedidoFormulario.html", {"miFormulario": miFormulario})
 
 
-#Productos---------------
-def producto(request):
-    return render(request, 'appImportacion/producto.html')
-
-#producto = Producto(codigo_prod = 2253, producto = "Sticker_totoro") #Clase 18 --> revisar
-#producto.save()
-
-# def productoFormulario(request):
-#     if request.method == "POST": 
-#         form = ProductoFormulario(request.POST)  
-#         print(form)  
-
-#         if form.is_valid(): 
-#             informacion = form.cleaned_data  
-#             productos = Producto(codigo_prod=informacion["codigo_prod"], producto=informacion["producto"]) 
-#             productos.save()  
-#             return render(request, "appImportacion/index.html")  
-#     else:
-#         miFormulario = ProductoFormulario()  
-        
-#     return render(request, "appImportacion/prodFormulario.html", {"miFormulario": miFormulario})
-
+#Productos---------------        
 class ProductoListView(ListView):
      model = Producto
-     template_name = 'appImportacion/producto.html'
-     context_object_name = 'articulos'
-
+     template_name = 'appImportacion/producto_list.html'
+     context_object_name = 'productos'        
+          
 class ProductoDetailView(DetailView):
     model = Producto
-    template_name = 'appImportacion/articulo_detail.html'
-    #context_object_name = 'articulo'
+    template_name = 'appImportacion/producto_detail.html'
 
-class ProductoCreateView(CreateView):
+class ProductoCreateView(LoginRequiredMixin, CreateView): 
     model = Producto
-    template_name = 'appImportacion/prodFormulario.html'
+    template_name = 'appImportacion/producto.html'
     fields = ['codigo_prod', 'producto']
     success_url = reverse_lazy('articulo-list')
 
-class ProductoUpdateView(UpdateView):  
+class ProductoUpdateView(LoginRequiredMixin, UpdateView):  
     model = Producto
-    template_name = 'appImportacion/prodFormulario.html'
+    template_name = 'appImportacion/producto_update.html'
     fields = ['codigo_prod', 'producto']
+    success_url = reverse_lazy('articulo-list')
 
-class ProductoDeleteView(DeleteView):
+class ProductoDeleteView(LoginRequiredMixin, DeleteView):
     model = Producto
-    template_name = 'appImportacion/articulo_confirm_delete.html'
+    template_name = 'appImportacion/producto_confirm_delete.html'
     success_url = reverse_lazy('articulo-list')
     
     
@@ -122,7 +107,6 @@ class ProductoDeleteView(DeleteView):
 #Busqueda ---------
 def busqueda(request):
     return render(request, 'appImportacion/BusquedaProd.html')
-   
 
 def buscar(request):
     if request.GET["codigo_prod"]:
@@ -138,3 +122,4 @@ def buscar(request):
         
    
 
+#Mariano extraterrestre123

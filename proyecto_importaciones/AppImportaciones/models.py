@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 class Cliente(models.Model):
     nombre = models.CharField(max_length=40)

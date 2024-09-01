@@ -24,17 +24,42 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'inicio' %}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'clientes' %}">Clients</a></li>
+                        <!--<li class="nav-item"><a class="nav-link" href="{% url 'clientes' %}">Clients</a></li>-->
                         <li class="nav-item"><a class="nav-link" href="{% url 'superv' %}">Administradores</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{% url 'productos' %}">All Products</a></li>
+                                <li><a class="dropdown-item" href="{% url 'articulo-list' %}">All Products</a></li>
                                 <li><hr class="dropdown-divider" /></li>
                                 <li><a class="dropdown-item" href="{% url 'pedidos' %}">Request</a></li>
                                 <!--<li><a class="dropdown-item" href="#!">New Arrivals</a></li>-->
                             </ul>
                         </li>
+
+                        {# DROPDOWN PARA LA CUENTA DE USUARIO #}
+                        {% if request.user.is_authenticated %}
+                        
+                            <div class="dropdown">
+                                <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ request.user.username }}
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                   <li><a class="dropdown-item" href="{% url 'Logout' %}">Log Out</a></li>
+                                </ul>
+                            </div>
+                        
+                        {% else %}
+
+                            <li class="nav-item dropdown">
+                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="{% url 'clientes' %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">Clients</a>
+                            
+                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                   <li><a class="dropdown-item" href="{% url 'Login' %}">Log In</a></li>
+                                   <li><hr class="dropdown-divider" /></li>
+                                   <li><a class="dropdown-item" href="{% url 'Register' %}">Register</a></li>
+                                 </ul>
+                            </li>
+                        {% endif %}
                     </ul>
                     <form class="d-flex">
                         <button class="btn btn-outline-dark" type="submit">

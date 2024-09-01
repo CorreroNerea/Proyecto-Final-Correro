@@ -6,7 +6,7 @@
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder"> <title>{{ object.producto }}</title></h1>
+            <h1 class="display-4 fw-bolder">Sign In</h1>
             <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
         </div>
     </div>
@@ -14,19 +14,17 @@
 {% endblock Header %}
 
         <!-- Form-->
-{% block Form %}
+        {% block Form %}
+        <p >"User name requires more than 10 digits and fewer than 20."</p>
+        <form action="" method="POST">
+            {% csrf_token %}
+            
+            {{ form.as_p }}
+            <input type="submit" value="Sign In">
 
-<title>Confirmar Eliminación</title>
+        </form>
 
-    <h1>¿Estás seguro de que quieres eliminar "{{ object.producto }}"?</h1>
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit">Confirmar</button>
-    </form>
-    <a href="{% url 'articulo-list' %}">Cancelar</a>
-    
-
-{% endblock Form %}
+        {% endblock Form %}
 
 <!-- Section-->
 {% block Section %}  

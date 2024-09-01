@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
-from .views import ProductoListView, ProductoDetailView, ProductoCreateView, ProductoUpdateView, ProductoDeleteView
+from .views import  ProductoDetailView, ProductoCreateView, ProductoUpdateView, ProductoDeleteView, ProductoListView
+
 
 urlpatterns = [
     #Cliente
@@ -24,12 +25,9 @@ urlpatterns = [
     path('form_busqueda_prod2/', views.buscar, name='buscar'),
     
     #Productos
-    path('prod/', views.producto, name='productos'),
-    #path('form_prod/', views.productoFormulario, name='formprod'),
-    #CRUD
-    path('prod/', ProductoListView.as_view(), name='articulo-list'),
-    path('articulo/<int:codigo_prod>/', ProductoDetailView.as_view(), name='articulo-detail'),
+    path('producto/', ProductoListView.as_view(), name='articulo-list'),
+    path('articulo/<int:pk>/', ProductoDetailView.as_view(), name='articulo-detail'),
     path('articulo/create/', ProductoCreateView.as_view(), name='articulo-create'),
-    path('articulo/<int:codigo_prod>/editar/', ProductoUpdateView.as_view(), name='articulo-update'),
-    path('articulo/<int:codigo_prod>/borrar/', ProductoDeleteView.as_view(), name='articulo-delete'),
+    path('articulo/<int:pk>/editar/', ProductoUpdateView.as_view(), name='articulo-update'),
+    path('articulo/<int:pk>/borrar/', ProductoDeleteView.as_view(), name='articulo-delete'),
 ]
