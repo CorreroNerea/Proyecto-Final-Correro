@@ -19,3 +19,6 @@ class PedidoFormulario(forms.Form):
 class ProductoFormulario(forms.Form):
     codigo_prod = forms.CharField(max_length=8)
     producto = forms.CharField(max_length=40)
+    precio = forms.IntegerField()
+    descripcion = forms.CharField(max_length=500)
+    imagen = forms.ImageField()

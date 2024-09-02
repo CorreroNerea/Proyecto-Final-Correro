@@ -87,7 +87,7 @@ class ProductoDetailView(DetailView):
 
 class ProductoCreateView(LoginRequiredMixin, CreateView): 
     model = Producto
-    template_name = 'appImportacion/producto.html'
+    template_name = 'appImportacion/producto_create.html'
     fields = ['codigo_prod', 'producto']
     success_url = reverse_lazy('articulo-list')
 

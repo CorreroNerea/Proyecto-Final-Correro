@@ -56,7 +56,7 @@ ROOT_URLCONF = 'proyecto_importaciones.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         #'DIRS': [BASE_DIR / './proyecto_importaciones/plantillas'],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -126,4 +126,4 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = "/Users/login/"
-LOGOUT_REDIRECT_URL = "/Users/logout/"
+LOGOUT_REDIRECT_URL = "/users/logout/"

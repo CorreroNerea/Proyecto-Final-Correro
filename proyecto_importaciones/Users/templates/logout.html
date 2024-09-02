@@ -14,18 +14,18 @@
 {% endblock Header %}
 
         <!-- Form-->
-        {% block Form %}
+        {% comment %} {% block Form %}
 
-        {% comment %} <form method="Post" action="{% url 'Logout' %}">
+        <form  action="{% url 'Logout' %}" method="POST">
             {% csrf_token %}
-            <button type="submit">Cerrar sesión</button>
+            <button type="submit">Log out</button>
         </form> {% endcomment %}
 
-        <p>Te has deslogeado</P>
+     <p>Te has deslogeado</P>
 
         {% endblock Form %}
 
-<!-- Section-->
+
 {% block Section %}  
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">

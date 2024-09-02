@@ -29,6 +29,9 @@ class Pedido(models.Model):
 class Producto(models.Model):
     codigo_prod = models.CharField(max_length=8)
     producto = models.CharField(max_length=40)
+    precio = models.IntegerField()
+    descripcion = models.CharField(max_length=500)
+    imagen = models.ImageField(upload_to='media/', null=True, blank=True)
     
     def __str__(self):
      return f"Codigo Producto: {self.codigo_prod}, Producto: {self.producto}"
