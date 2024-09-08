@@ -3,23 +3,21 @@
 {% load static %}
 
 {% block Header %}         
-<header class="bg-dark py-5">
-    <div class="container px-4 px-lg-5 my-5">
-        <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Clientes</h1>
-            <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
-        </div>
-    </div>
-</header>
-{% endblock Header %}
 
-        <!-- Form-->
+            <h1 class="display-4 fw-bolder">Product</h1>
+
+{% endblock Header %}
+       
         {% block Form %}
-        <form method="POST">
-            {% csrf_token %}  
-            {{ miFormulario.as_table }}
-            <button type="submit">Enviar</button>
+        
+        <a href="{% url 'compra-list' %}">Volver a lista de productos</a>  
+        
+         <!-- Form-->
+        <form action= "{% url 'buscar' %}" method="GET"> 
+            <input type="number" name="codigo_prod" id="codigo"> 
+            <input type="submit" value="Buscar" >
         </form>           
+        
         {% endblock Form %}
 
 <!-- Section-->

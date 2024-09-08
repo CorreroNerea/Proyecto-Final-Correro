@@ -1,0 +1,55 @@
+{% extends "appImportacion/index.html" %}
+
+{% load static %}
+
+{% block Header %}
+
+            <h1 class="display-4 fw-bolder">Productos</h1>
+
+{% endblock Header %}
+<!-- Section-->
+
+{% block Form %}
+        
+
+       <!-- Form para Buscar artículo -->
+       <form action="{% url 'buscar_prod_compra' %}" method="get">
+        <button type="submit">Buscar producto</button>
+       </form>
+
+{% endblock Form %}
+
+
+{% block Section %}
+
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            {% for producto in productos %}
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product image-->
+                    <img src="{{ producto.imagen.url }}" alt=" " style="max-width: 300px;">
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">{{producto.producto}}, Codigo: {{producto.codigo_prod}} </h5>
+                            <!-- Product price-->
+                            <p>Precio: u${{producto.precio}}</p>
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'compra-agregar' producto.pk %}">Agregar a Carrito</a></div>
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'compra-detail' producto.pk %}">Ver detalle</a></div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+{% endblock Section %}

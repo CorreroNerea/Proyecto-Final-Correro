@@ -3,32 +3,68 @@
 {% load static %}
 
 {% block Header %}
-            
-<header class="bg-dark py-5">
-    <div class="container px-4 px-lg-5 my-5">
-        <div class="text-center text-white">
+
             <h1 class="display-4 fw-bolder">Home</h1>
-            <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
-        </div>
-    </div>
-</header>
+            <p class="lead fw-normal text-gray-50 mb-0">Conectamos a las personas con lo que más valoran.</p>
+           
+            <div> <p  > Date: {{ ahora }} </p> </div>
 {% endblock Header %}
 <!-- Section-->
 
 <!-- Form-->
 {% block Form %}
-. Pagina en reforma :)         
+      
 {% endblock Form %}
 
 {% block Section %} 
+<h2>Proximos Productos</h2>
+
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             <div class="col mb-5">
-                <div>
-
-
-
+                <div class="card h-100">
+                    <!-- Product details-->
+                   <img src="{% static 'appImportacion/assets/imagen/s-l400.jpg' %}" alt="Figura de Acción 3">
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h2>Iron Man</h2>
+                            <p>¡Prepárate para la batalla con la figura de Iron Man! Equipado con su traje de alta tecnología y repulsores luminosos, esta figura captura la esencia de Tony Stark en su mejor momento. Ideal para los fans de Marvel y los entusiastas de los superhéroes.</p>
+                            <!-- Product price-->
+                            <p class="price">$49.99</p><button type="button" class="btn btn-warning btn-sm " ><a href="{% url 'formpedido' %}">Reservar Pedido</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product details-->
+                   <img src="{% static 'appImportacion/assets/imagen/batman.jpg' %}" alt="Figura de Acción 3">
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h2>Batman</h2>
+                            <p>Revive la oscuridad de Gotham con esta figura de Batman, completa con su icónico traje negro y capa. Detalles meticulosos hacen de esta figura una adición esencial para cualquier coleccionista.</p>
+                            <!-- Product price-->
+                            <p class="price">$29.99</p><button type="button" class="btn btn-warning btn-sm " ><a href="{% url 'formpedido' %}">Reservar Pedido</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product details-->
+                   <img src="{% static 'appImportacion/assets/imagen/capitan.webp' %}" alt="Figura de Acción 3">
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h2>Capitan America</h2>
+                            <p>Defiende la justicia con la figura del Capitán América, destacando su icónico escudo y uniforme patriótico. Con articulaciones detalladas y un diseño robusto, esta figura es perfecta para recrear las épicas batallas del universo Marvel.</p>
+                            <!-- Product price-->
+                            <p class="price">$21.00</p><button type="button" class="btn btn-warning btn-sm " ><a href="{% url 'formpedido' %}">Reservar Pedido</a></button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

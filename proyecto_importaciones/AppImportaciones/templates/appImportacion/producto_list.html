@@ -3,15 +3,9 @@
 {% load static %}
 
 {% block Header %}
-            
-<header class="bg-dark py-5">
-    <div class="container px-4 px-lg-5 my-5">
-        <div class="text-center text-white">
+
             <h1 class="display-4 fw-bolder">Productos</h1>
-            <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
-        </div>
-    </div>
-</header>
+
 {% endblock Header %}
 <!-- Section-->
 
@@ -23,15 +17,17 @@
         <button type="submit">Buscar producto</button>
        </form>
 
+       {% if is_staff %}
        <!-- Enlace para crear un nuevo artículo -->
         <a href="{% url 'articulo-create' %}">Ingresar Nuevo Artículo</a> 
-
+       {% endif %}
 
 {% endblock Form %}
 
 
 {% block Section %}
-     
+
+{% if is_staff %}
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
@@ -39,20 +35,21 @@
             <div class="col mb-5">
                 <div class="card h-100">
                     <!-- Product image-->
-                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                    <img src="{{ producto.imagen.url }}" alt=" " style="max-width: 300px;">
                     <!-- Product details-->
                     <div class="card-body p-4">
                         <div class="text-center">
                             <!-- Product name-->
                             <h5 class="fw-bolder">{{producto.producto}}, Codigo: {{producto.codigo_prod}} </h5>
                             <!-- Product price-->
-                            $40.00 - $80.00
+                            <p>Precio: u${{producto.precio}}</p>
                         </div>
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Agregar a carrito</a></div>
+                        
                         <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'articulo-detail' producto.pk %}">Ver detalle</a></div>
+
                         <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'articulo-update' producto.pk %}">Editar</a></div>
                         <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'articulo-delete' producto.pk %}">Borrar</a></div>
                     </div>
@@ -62,6 +59,12 @@
         </div>
     </div>
 </section>
+{% else %}
+
+<p>Solo Administradores tienen acceso a esta vista.</p>
+
+<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'inicio'  %}">Volver a inicio</a></div>
+{% endif %}
 
 {% endblock Section %}
 

@@ -1,0 +1,41 @@
+{% extends "appImportacion/index.html" %}
+
+{% load static %}
+
+{% block Header %}
+
+            <h1 class="display-4 fw-bolder">User - Perfil</h1>
+
+{% endblock Header %}
+<!-- Section-->
+
+{% block Form %}
+{% endblock Form %}
+
+
+{% block Section %}
+
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                           
+                            <h5 class="fw-bolder">{{user.username}} </h5>
+                       
+                            <p>Email: {{user.email}}</p>
+                            <p>Miembre desde: {{user.date_joined}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+
+{% endblock Section %}

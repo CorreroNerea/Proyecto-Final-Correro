@@ -19,26 +19,32 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="{% url 'inicio' %}">Start Bootstrap</a>
+                <a class="navbar-brand" href="{% url 'inicio' %}">Cultural Passport</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'inicio' %}">Home</a></li>
-                        <!--<li class="nav-item"><a class="nav-link" href="{% url 'clientes' %}">Clients</a></li>-->
-                        <li class="nav-item"><a class="nav-link" href="{% url 'superv' %}">Administradores</a></li>
+                        
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'About' %}">About Me</a></li>
+                        
+                         
+                        
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{% url 'articulo-list' %}">All Products</a></li>
+                                {% if user.is_authenticated %}
+                                <li><a class="dropdown-item" href="{% url 'permiso' user.pk %}">Products_adm</a></li>
                                 <li><hr class="dropdown-divider" /></li>
+                                {% endif %}
                                 <li><a class="dropdown-item" href="{% url 'pedidos' %}">Request</a></li>
-                                <!--<li><a class="dropdown-item" href="#!">New Arrivals</a></li>-->
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="{% url 'compra-list'  %}">Productos</a></li>
                             </ul>
                         </li>
 
+                        
                         {# DROPDOWN PARA LA CUENTA DE USUARIO #}
                         {% if request.user.is_authenticated %}
-                        
+                            <img src="{{request.user.imagen.imagen.url}}" alt="" style="height: 50px;width: 50px;">
                             <div class="dropdown">
                                 <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{ request.user.username }}
@@ -46,45 +52,50 @@
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                    <li><a class="dropdown-item" href="{% url 'Logout' %}">Log Out</a></li>
                                    <li><a class="dropdown-item" href="{% url 'EditarPerfil' %}">Edit User</a></li>
+                                   <li><a class="dropdown-item" href="{% url 'Perfil' user.pk %}">Perfil</a></li>
                                 </ul>
                             </div>
                         
                         {% else %}
 
-                            <li class="nav-item dropdown">
-                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="{% url 'clientes' %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">Clients</a>
+                            <div class="nav-item dropdown">
+                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">User</a>
                             
                                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                    <li><a class="dropdown-item" href="{% url 'Login' %}">Log In</a></li>
                                    <li><hr class="dropdown-divider" /></li>
                                    <li><a class="dropdown-item" href="{% url 'Register' %}">Register</a></li>
                                  </ul>
-                            </li>
+                                </div>
                         {% endif %}
                     </ul>
                     <form class="d-flex">
                         <button class="btn btn-outline-dark" type="submit">
-                            <i class="bi-cart-fill me-1"></i>
-                            Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                            <a href="{% url 'carrito-list' %}"><i class="bi-cart-fill me-1"></i>Cart</a>
+                            <!--<span class="badge bg-dark text-white ms-1 rounded-pill">0</span>-->
                         </button>
+                        
                     </form>
                 </div>
             </div>
         </nav>
         <!-- Header-->
-        {% block Header %}
-        <header class="bg-dark py-5">
+
+         <header class="bg-dark py-5" style="background-image: url('{% static 'appImportacion/assets/imagen/Untitled.png' %}') !important; background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important;">
             <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Shop in style</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+                <div class="text-center text-gray">
+                    <div class="p-4"></div>
+                    {% block Header %}
+                    <h1 >Shop in style</h1>
+                    
+                    {% endblock Header %}
+                    <p >"Cruzamos distancias, entregamos experiencias."</p>
                 </div>
             </div>
         </header>
-        {% endblock Header %}
 
-        <!-- Form-->
+
+        <!-- Form                                                       reveeer esto, porq esta aca --> 
         {% block Form %}
         <form method="post">
             {% csrf_token %}  
@@ -299,9 +310,10 @@
         </section>
         {% endblock Section %}
 
+
         <!-- Footer-->
         <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Cultural Passport by Correro Nerea</p></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

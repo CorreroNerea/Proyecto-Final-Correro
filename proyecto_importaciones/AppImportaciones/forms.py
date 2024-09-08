@@ -1,4 +1,5 @@
 from django import forms
+from .models import Producto
 
 class ClienteFormulario(forms.Form):
     nombre = forms.CharField(max_length=40)
@@ -9,7 +10,6 @@ class ClienteFormulario(forms.Form):
 class SupervisorFormulario(forms.Form):
     nombre_emp = forms.CharField(max_length=40)
     numero = forms.IntegerField()
-    #permiso = forms.CharField(max_length=50) 
     
 class PedidoFormulario(forms.Form):
     codigo_ped = forms.CharField(max_length=8)
@@ -21,4 +21,11 @@ class ProductoFormulario(forms.Form):
     producto = forms.CharField(max_length=40)
     precio = forms.IntegerField()
     descripcion = forms.CharField(max_length=500)
-    imagen = forms.ImageField()
+    #imagen = forms.ImageField(label="images", required=False)
+    
+    # class Meta:
+    #     model = Producto
+    #     fields = ['images']
+ 
+class ImgProductoFormulario(forms.Form):
+    imagen = forms.ImageField(label="imagen")

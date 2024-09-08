@@ -1,7 +1,10 @@
-# from django.db import models
+from django.db import models
+from django.contrib.auth.models import User
 
-# class UserRegister(models.Model):
-#     email = models.EmailField()
-#     password1 = models.CharField(label='Contraseña')
-#     password2 = models.CharField(label='Repetir contraseña')
 
+class Imagen(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    imagen = models.ImageField(upload_to='media', null=True, blank = True)
+
+    def __str__(self):
+        return f"{self.user} - {self.imagen}"

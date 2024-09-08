@@ -1,0 +1,46 @@
+{% extends "appImportacion/index.html" %}
+
+{% load static %}
+
+{% block Header %}
+
+            <h1 class="display-4 fw-bolder">Carrito</h1>
+
+{% endblock Header %}
+<!-- Section-->
+
+{% block Form %}
+{% endblock Form %}
+
+
+{% block Section %}
+
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            {% for producto in productos %}
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">{{producto.producto}}, Codigo: {{producto.codigo_prod}} </h5>
+                            <!-- Product price-->
+                            <p>Precio: u${{producto.precio}}</p>
+                            <p>Cantidad: {{producto.cantidad}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div>
+        <button type="button" class="btn btn-secondary btn-sm "><a href="{% url 'compra-list' %}">Seguir comprando</a></button>
+        <button type="button" class="btn btn-warning btn-sm " ><a href="{% url 'Finalizado' %}">Comprar</a></button>
+    </div>
+</section>
+
+
+{% endblock Section %}

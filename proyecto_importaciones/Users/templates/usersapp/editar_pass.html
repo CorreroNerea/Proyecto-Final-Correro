@@ -1,0 +1,30 @@
+{% extends "appImportacion/index.html" %}
+
+{% load static %}
+
+{% block Header %}         
+
+            <h1 class="display-4 fw-bolder">Edit users</h1>
+
+{% endblock Header %}
+
+        <!-- Form-->
+        {% block Form %}
+
+        <form action="" method="POST" >
+            {% csrf_token %}
+    
+            <table>
+                {{ form.as_table }}
+            </table>
+            
+            <input type="submit" value="Cambiar Password">
+    
+        </form>
+
+        {% endblock Form %}
+
+<!-- Section-->
+{% block Section %}  
+
+{% endblock Section %}

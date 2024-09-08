@@ -1,11 +1,16 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from .forms import UserRegisterForm, UserEditForm
 from django.contrib.auth.decorators import login_required
+from .models import Imagen, User
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import PasswordChangeView
+from django.shortcuts import get_object_or_404
     
 
-
+# ------------- Cuenta -----------------
 def login_request(request):
     msg_login = ""
     if request.method == 'POST':
@@ -35,7 +40,7 @@ def register(request):
         if form.is_valid():
             
             form.save()
-            return render(request,"usersapp/login.html")
+            return render(request,"appImportacion/inicio.html")
         else:
             # Mostrar los errores del formulario
             msg_register = form.errors.as_text()
@@ -44,32 +49,52 @@ def register(request):
     form = UserRegisterForm()     
     return render(request,"usersapp/registro.html" ,  {"form":form, "msg_register": msg_register})
 
+
    # Vista de editar el perfil
+
 @login_required
 def editar_perfil(request):
     usuario = request.user  
+    
     if request.method == 'POST':  
         miFormulario = UserEditForm(request.POST, request.FILES, instance=usuario) 
 
         if miFormulario.is_valid(): 
-            if miFormulario.cleaned_data.get('imagen'): 
+            miFormulario.save() #
+
+            imagen = miFormulario.cleaned_data.get('imagen') #
+            if imagen:
+                # Verifica si ya tiene imagen de perfil
                 if Imagen.objects.filter(user=usuario).exists():  
-                    usuario.imagen.imagen = miFormulario.cleaned_data.get('imagen')
+                    # Si ya existe, actualizar la imagen
+                    usuario.imagen.imagen = imagen
                     usuario.imagen.save()  
                 else:
-                    avatar = Imagen(user=usuario, imagen=miFormulario.cleaned_data.get('imagen'))
+                    # Si no existe, crear una nueva instancia de Imagen
+                    avatar = Imagen(user=usuario, imagen=imagen)
                     avatar.save()  
 
-            miFormulario.save()  
-
-            return render(request, "usersapp/login.html")  
-
+            return render(request, "appImportacion/inicio.html")  
     else:  
         miFormulario = UserEditForm(instance=usuario) 
 
     return render(request, "usersapp/editar_usuario.html", {"mi_form": miFormulario, "usuario": usuario})
 
+@login_required
+class CambiarContrasenia(LoginRequiredMixin, PasswordChangeView):
+    template_name = "usersapp/editar_pass.html"
+    success_url = reverse_lazy("EditarPerfil")
+  
+@login_required
+def redirect(request):
+    if request.method == 'GET':
+        logout(request)
+        return render(request, 'appImportacion/inicio.html') 
+    return render(request, 'appImportacion/inicio.html')
+     
+# -------------- Perfil --------------------   
+def PerfilDetail(request, pk):
+    user = get_object_or_404(User, pk=pk)
+    
+    return render (request, 'usersapp/perfil_list.html', {'user': user})
 
-#Mariano extraterrestre123
-#Pablo qwe784512
-#Palmiere monoestrella52

@@ -1,0 +1,22 @@
+{% extends "appImportacion/index.html" %}
+
+{% load static %}
+
+{% block Header %}
+
+            <h1 class="display-4 fw-bolder">User compra</h1>
+
+{% endblock Header %}
+<!-- Section-->
+
+{% block Form %}
+        
+       <p>"No hay items en su carrito de compra"</p>
+      <div><button type="button" class="btn btn-secondary btn-sm "><a href="{% url 'compra-list' %}">Volve a lista de articulos.</a></button></div>
+{% endblock Form %}
+
+{% block Section %}
+     
+
+
+{% endblock Section %}

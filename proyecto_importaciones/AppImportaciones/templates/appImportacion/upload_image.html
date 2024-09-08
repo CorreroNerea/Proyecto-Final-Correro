@@ -1,0 +1,29 @@
+{% extends "appImportacion/index.html" %}
+
+{% load static %}
+
+{% block Header %}
+
+            <h1 class="display-4 fw-bolder">Productos Imagen Form</h1>
+
+{% endblock Header %}
+<!-- Section-->
+
+{% block Form %}
+        
+<h1>Subir Imagen</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Subir</button>
+    </form>
+
+
+{% endblock Form %}
+
+
+{% block Section %}
+{% endblock Section %}
+
+
+                                                      
