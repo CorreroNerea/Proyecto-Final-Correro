@@ -74,3 +74,8 @@ Desarrollador Principal: Alejandrino
 
 Contacto
 Para soporte o más información, contacta a correro.nerea@gmailcom o a través del repositorio de GitHub.
+
+Video explicativo:
+https://youtu.be/npB-uXXBcjM
+
+
