@@ -78,4 +78,5 @@ Para soporte o más información, contacta a correro.nerea@gmailcom o a través 
 Video explicativo:
 https://youtu.be/npB-uXXBcjM
 
-
+Caso de Prueba:
+https://docs.google.com/spreadsheets/d/1o4AUGhL3xZ5s755ZiwGjWF8Eda59424Bg-Ckkj2zeqo/edit?usp=sharing --> Excel.
