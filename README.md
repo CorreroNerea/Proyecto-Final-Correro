@@ -3,17 +3,25 @@ Descripción
 Proyecto Importaciones es una aplicación web diseñada para facilitar la compra de productos importados y permitir la gestión de pedidos para productos no disponibles en la página. El objetivo principal es acercar productos internacionales a los usuarios y permitirles realizar pedidos de artículos que no están actualmente en el catálogo.
 
 Características Principales
-Página del Cliente:
-Los clientes pueden registrarse, iniciar sesión y gestionar su perfil.
+Página principal:
+Muetra alguno de los proximos productos que seran ingresados.
+
+User:
+Desde User --> Register, se puede registrar. Los usuarios pueden registrarse, y luego en la misma tab esta la opcion para iniciar sesión.
+Una vez iniciada la sesion, en la misma tab el usuario tiene las opciones de editar su perfil, log out y mirar los detalles de su perfil.
 
 Página del Administrador:
-Los administradores pueden aprobar pedidos y compras. (funcionalidad va a ser disponible proximamente)
-Actualmente, los administradores pueden ingresar nuevos empleados.
+Desde Shop --> Products_adm:
+Los administradores pueden crear, borrar, editar y visualizar productos. 
+Se esta trabajando para que proximamente puedan revisar y aprobar pedidos. (funcionalidad va a ser disponible proximamente)
 
-Página All Productos:
-Agregar nuevos productos.
+Página Productos:
 Buscar productos mediante su código.
-Para buscar, actualmente se pueden usar los códigos 2253 y 3625, que son los únicos presentes en la base de datos.
+Para buscar, actualmente se pueden usar los códigos 2116, 2111 y 2253, que son los únicos presentes en la base de datos.
+Desde esta tab los diferentes usuarios pueden visualizar el detalle de los productos que quieran, pueden sumar productos a sus carritos de compra.
+
+Pagina Carrito:
+Permite a los usuarios aprobar y finalizar sus compras.
 
 Página de Requests:
 Permite ingresar pedidos para productos que no están en el catálogo.
@@ -32,7 +40,7 @@ Abre una nueva carpeta, abre la consola de Git en esa carpeta, y ejecuta el sigu
 
 ```bash
 Copiar código
-git clone https://github.com/CorreroNerea/Tercera_Pre_entrega-Correro
+git clone https://github.com/CorreroNerea/Proyecto-Final-Correro
 ```
 
 Instalar Dependencias:
@@ -40,7 +48,7 @@ Navega al directorio del proyecto y asegúrate de instalar las dependencias nece
 
 ```bash
 
-cd Tercera_Pre_entrega-Correro
+cd Proyecto-Final-Correro
 pip install -r requirements.txt
 ```
 
@@ -64,7 +72,7 @@ Navegación:
 Navega por las distintas pestañas en el menú de navegación. Cada página representa una clase en models y tiene un formulario para cargar datos en la base de datos.
 
 Buscar Productos:
-En la página "All Products", en el formulario "Buscar" podes buscar productos usando los códigos 2253 y 3625. Estos códigos devolverán el nombre del producto registrado en la base de datos.
+En la página "Productos", en el formulario "Buscar" podes buscar productos usando los códigos  2116, 2111 y 2253. Estos códigos devolverán el nombre del producto registrado en la base de datos.
 
 Django Administration:
 Solo el administrador con el nombre de usuario: Alejandrino y la contraseña: Alejandrino, tiene acceso a la administración de Django para hacer cambios y gestionar BD en esta aplicación.
