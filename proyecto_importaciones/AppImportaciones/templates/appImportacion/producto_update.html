@@ -5,7 +5,6 @@
 {% block Header %}
 
             <h1 class="display-4 fw-bolder">Productos</h1>
-            <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
 
 {% endblock Header %}
 
@@ -18,8 +17,8 @@
     {{ form.as_table }}
     <button type="submit">Guardar</button>
 </form>  
-<a href="{% url 'upload_image' producto.pk  %}">Update Imagen</a>
-<a href="{% url 'permiso' user.pk %}">Volver a lista de productos</a>         
+<a class="btn btn-outline-dark mt-auto" href="{% url 'upload_image' producto.pk  %}">Update Imagen</a>
+<a class="btn btn-outline-dark mt-auto" href="{% url 'permiso' user.pk %}">Volver a lista de productos</a>         
 
 {% endblock Form %}
 

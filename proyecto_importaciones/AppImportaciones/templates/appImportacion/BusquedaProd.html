@@ -10,7 +10,7 @@
        
         {% block Form %}
         
-        <a href="{% url 'permiso' user.pk %}">Volver a lista de productos</a>  
+        <a class="btn btn-outline-dark mt-auto" href="{% url 'permiso' user.pk %}">Volver a lista de productos</a>  
         
          <!-- Form-->
         <form action= "{% url 'buscar' %}" method="GET"> <!--corregido-->
@@ -18,6 +18,7 @@
             <input type="submit" value="Buscar" >
         </form>           
         
+
         {% endblock Form %}
 
 <!-- Section-->

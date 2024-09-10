@@ -14,12 +14,12 @@
 
        <!-- Form para Buscar artículo -->
        <form action="{% url 'buscar_prod' %}" method="get">
-        <button type="submit">Buscar producto</button>
+        <button class="btn btn-outline-dark mt-auto" type="submit">Buscar producto</button>
        </form>
 
        {% if is_staff %}
        <!-- Enlace para crear un nuevo artículo -->
-        <a href="{% url 'articulo-create' %}">Ingresar Nuevo Artículo</a> 
+        <a class="btn btn-outline-dark mt-auto" href="{% url 'articulo-create' %}">Ingresar Nuevo Artículo</a> 
        {% endif %}
 
 {% endblock Form %}
